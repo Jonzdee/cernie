@@ -1,14 +1,16 @@
-import { AppleCardsCarouselDemo } from "./carousel"
-import { BackgroundBeamsDemo } from "./hero"
-import {  NavbarDemo } from "./nav"
+import { BackgroundBeamsDemo } from "./hero";
+import { NavbarDemo } from "./nav";
+import dynamic from 'next/dynamic';
 
-export default function Home (){
-  console.log("hello me --SERVER/CLIENT")
-  return(
-      <>
-    <NavbarDemo />
-<BackgroundBeamsDemo />
-<AppleCardsCarouselDemo />
-      </>
-  )
+// Dynamically import AppleCardsCarouselDemo to render only on the client
+const AppleCardsCarouselDemo = dynamic(() => import("./carousel"), { ssr: false });
+
+export default function Home() {
+  return (
+    <>
+      <NavbarDemo />
+      <BackgroundBeamsDemo />
+      <AppleCardsCarouselDemo />
+    </>
+  );
 }
